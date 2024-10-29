@@ -1,10 +1,11 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { User } from '../users/schema/user.schema';
 import { error } from 'console';
+import tokenBlacklist from '../../token/tokenBlacklist';
 
 @Injectable()
 export class AuthService {
@@ -50,5 +51,21 @@ export class AuthService {
         );
 
         return { user, token };
+    }
+
+    async logout(authHeader: string) {
+        if (!authHeader) {
+            throw new UnauthorizedException('Authorization header missing');
+        }
+        const token = authHeader.split(' ')[1];
+        if (!token) {
+            throw new UnauthorizedException('Token not provided');
+        }
+        try {
+            tokenBlacklist.add(token);
+            return { message: 'Logout successfully' }
+        } catch (error) {
+            throw error;
+        }
     }
 }

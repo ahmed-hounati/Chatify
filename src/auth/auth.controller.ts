@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Headers, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
@@ -17,5 +17,9 @@ export class AuthController {
         return this.authService.login(email, password);
     }
 
+    @Post('/logout')
+    async logout(@Headers('authorization') authHeader: string): Promise<{ message: string }> {
+        return this.authService.logout(authHeader);
+    }
 
 }
