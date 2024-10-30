@@ -53,7 +53,7 @@ export class AuthService {
         return { user, token };
     }
 
-    async logout(authHeader: string) {
+    async logout(authHeader: string): Promise<{ message: string }> {
         if (!authHeader) {
             throw new UnauthorizedException('Authorization header missing');
         }
