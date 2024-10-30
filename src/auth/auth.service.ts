@@ -12,9 +12,8 @@ export class AuthService {
     constructor(@InjectModel(User.name) private userModel: Model<User>) { }
     async register(createUserDto: Partial<User>): Promise<{ user: User; token: string }> {
         try {
-            const hashedPassword = await bcrypt.hash(createUserDto.password, 8);
 
-            const user = new this.userModel({ ...createUserDto, password: hashedPassword });
+            const user = new this.userModel({ ...createUserDto });
             const savedUser = await user.save();
 
             const token = jwt.sign(
@@ -34,14 +33,10 @@ export class AuthService {
     }
 
 
-    async login(email: string, password: string): Promise<{ user: User; token: string }> {
+    async login(email: string): Promise<{ user: User; token: string }> {
         const user = await this.userModel.findOne({ email })
         if (!user) {
             throw new error('Email not found!')
-        }
-        const isPassword = await bcrypt.compare(password, user.password);
-        if (!isPassword) {
-            throw new error('Password incorrect')
         }
 
         const token = jwt.sign(

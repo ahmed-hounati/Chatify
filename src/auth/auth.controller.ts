@@ -12,9 +12,9 @@ export class AuthController {
     }
 
     @Post('/login')
-    async login(@Body() body: { email: string; password: string }) {
-        const { email, password } = body;
-        return this.authService.login(email, password);
+    async login(@Body() body: { email: string }) {
+        const { email } = body;
+        return this.authService.login(email);
     }
 
     @Post('/logout')
