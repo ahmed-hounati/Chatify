@@ -17,7 +17,7 @@ dotenv.config();
             UsersModule,
             AuthModule,
             RequestModule],
-  controllers: [AppController, RequestController],
+  controllers: [AppController],
   providers: [AppService, RequestService],
 })
 export class AppModule { }
