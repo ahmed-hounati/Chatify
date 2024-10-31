@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { RequestController } from './request/request.controller';
 import { RequestService } from './request/request.service';
 import { RequestModule } from './request/request.module';
+import { MessageModule } from './message/message.module';
 import * as dotenv from 'dotenv';
 
 
@@ -16,7 +17,8 @@ dotenv.config();
   imports: [MongooseModule.forRoot(process.env.MONGO_URI),
             UsersModule,
             AuthModule,
-            RequestModule],
+            RequestModule,
+            MessageModule],
   controllers: [AppController],
   providers: [AppService, RequestService],
 })

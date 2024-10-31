@@ -17,9 +17,4 @@ export class AuthController {
         return this.authService.login(email);
     }
 
-    @Post('/logout')
-    async logout(@Headers('authorization') authHeader: string): Promise<{ message: string }> {
-        return this.authService.logout(authHeader);
-    }
-
 }
