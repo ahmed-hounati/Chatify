@@ -12,14 +12,9 @@ export class AuthController {
     }
 
     @Post('/login')
-    async login(@Body() body: { email: string; password: string }) {
-        const { email, password } = body;
-        return this.authService.login(email, password);
-    }
-
-    @Post('/logout')
-    async logout(@Headers('authorization') authHeader: string): Promise<{ message: string }> {
-        return this.authService.logout(authHeader);
+    async login(@Body() body: { email: string }) {
+        const { email } = body;
+        return this.authService.login(email);
     }
 
 }
