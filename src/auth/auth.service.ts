@@ -1,10 +1,8 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import * as jwt from 'jsonwebtoken';
 import { User } from '../users/schema/user.schema';
 import { error } from 'console';
-import tokenBlacklist from '../../token/tokenBlacklist';
 
 @Injectable()
 export class AuthService {

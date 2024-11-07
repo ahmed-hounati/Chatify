@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { RequestModule } from './request/request.module';
 import { MessageModule } from './message/message.module';
 import { CanalModule } from './canal/canal.module';
+import { NotificationModule } from './notification/notification.module';
 import * as dotenv from 'dotenv';
 
 
@@ -18,7 +19,8 @@ dotenv.config();
     AuthModule,
     RequestModule,
     MessageModule,
-    CanalModule],
+    CanalModule,
+    NotificationModule],
   controllers: [AppController],
   providers: [AppService],
 })
