@@ -32,7 +32,7 @@ import * as Joi from 'joi';
     RequestModule,
     MessageModule,
     CanalModule,
-    NotificationModule,
+    NotificationModule
   ],
   controllers: [AppController],
   providers: [AppService],
