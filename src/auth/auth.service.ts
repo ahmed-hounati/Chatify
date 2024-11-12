@@ -1,8 +1,7 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../users/schema/user.schema';
-import { error } from 'console';
 
 @Injectable()
 export class AuthService {
@@ -27,7 +26,7 @@ export class AuthService {
     async login(email: string): Promise<{ user: User }> {
         const user = await this.userModel.findOne({ email })
         if (!user) {
-            throw new error('Email not found!')
+            throw new BadRequestException('Email not found!')
         }
         return { user };
     }
