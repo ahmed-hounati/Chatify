@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { RequestModule } from './request/request.module';
 import { MessageModule } from './message/message.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { RoomModule } from './room/room.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -29,6 +30,7 @@ import * as Joi from 'joi';
     AuthModule,
     RequestModule,
     MessageModule,
+    RoomModule,
   ],
   controllers: [AppController],
   providers: [AppService],
